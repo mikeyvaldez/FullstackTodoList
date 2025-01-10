@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import userRoutes from "./routes/user.route.js"
 
 const app = express();
 app.use(express.json()); // this will allow json as the input of the backend
@@ -24,6 +25,11 @@ mongoose
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+
+app.use("/api/user", userRoutes)
+
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
