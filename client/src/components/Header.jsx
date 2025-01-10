@@ -29,13 +29,14 @@ export default function Header() {
       </Button>
       <div className="flex gap-2 md:order-2">
         <Button
-          gradientDuoTone="cyanToBlue"
+          color="blue"
           className="w-12 h-10 hidden sm:inline"
+          pill
         >
           <FaMoon />
         </Button>
-        <Link to="/sign-in">
-          <Button gradientDuoTone="cyanToBlue" outline>
+        <Link to="/signin">
+          <Button color="blue" outline>
             Sign In
           </Button>
         </Link>
