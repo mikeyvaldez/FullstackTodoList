@@ -4,6 +4,8 @@ import App from "./App.jsx";
 import { persistor, store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import ThemeProvider from "./components/ThemeProvider.jsx";
+
 
 // the provider and store are related to redux
 // redux is used to retain the global state of a user, for instance.
@@ -15,7 +17,9 @@ import { PersistGate } from "redux-persist/integration/react";
 createRoot(document.getElementById("root")).render(
   <PersistGate persistor={persistor}>
     <Provider store={store}>
-      <App />
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
     </Provider>
   </PersistGate>
 );
