@@ -16,5 +16,17 @@ export const createTodo = async (req, res, next) => {
     .then((result) => res.json(result))
     .catch((err) => next(err));
 };
+// ------------------------------------------------------------------------------
 
-export const getTodos = async (req, res) => {}
+// ---------------------GET TODOS----------------------------------------------
+export const getTodos = async (req, res, next) => {
+  Todo.find()
+    .then((result) => res.json(result))
+    .catch((err) => next(err));
+};
+// -----------------------end of get todos---------------------------------------
+
+// ------------------UPDATE TODOS--------------------------------------------------
+export const updateTodos = async (req, res, next) => {
+  
+};
