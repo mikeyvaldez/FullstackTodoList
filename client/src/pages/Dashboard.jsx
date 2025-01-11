@@ -8,6 +8,8 @@ import DashProfile from "../components/DashProfile"
 // import DashboardComments from "../components/DashboardComments";
 // import DashComp from "../components/DashComp";
 
+// NOTE: The dashboard is the considered the profile page
+
 export default function Dashboard() {
   const location = useLocation();
   const [tab, setTab] = useState("");
@@ -33,12 +35,10 @@ export default function Dashboard() {
       </div>
       {/* profile */}
       {tab === "profile" && <DashProfile />}      
-      {/* users */}
-      {/* {tab === "users" && <DashboardUsers />} */}
       {/* todos */}
       {/* {tab === "todos" && <DashTodoList />} */}
-      {/* dashboard component */}
-      {/* {tab === "dash" && <DashComp />} */}
+      
+      
     </div>
   )
 }
