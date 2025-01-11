@@ -1,5 +1,5 @@
 import { Alert, Button, Modal, TextInput } from "flowbite-react";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import {
   updateStart,
@@ -12,37 +12,15 @@ import {
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { Link } from "react-router-dom";
 
 export default function DashboardProfile() {
   const { currentUser, error, loading } = useSelector((state) => state.user);
-  const [imageFile, setImageFile] = useState(null);
-  const [imageFileUrl, setImageFileUrl] = useState(null);
-  const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
-  const [imageFileUploadError, setImageFileUploadError] = useState(null);
-  const [imageFileUploading, setImageFileUploading] = useState(false);
   const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
   const [updateUserError, setUpdateUserError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({});
-  const filePickerRef = useRef();
   const dispatch = useDispatch();
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
-      setImageFileUrl(URL.createObjectURL(file));
-    }
-  };
-
-  useEffect(() => {
-    if (imageFile) {
-      uploadImage();
-    }
-  }, [imageFile]);
-
-  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -53,10 +31,6 @@ export default function DashboardProfile() {
     setUpdateUserSuccess(null);
     if (Object.keys(formData).length === 0) {
       setUpdateUserError("No changes made");
-      return;
-    }
-    if (imageFileUploading) {
-      setUpdateUserError("Please wait for image to upload");
       return;
     }
     try {
@@ -120,7 +94,6 @@ export default function DashboardProfile() {
     <div className="max-w-lg mx-auto p-3 w-full">
       <h1 className="my-7 text-center font-semibold text-3xl">Profile</h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        
         <TextInput
           type="text"
           id="username"
@@ -138,23 +111,17 @@ export default function DashboardProfile() {
         <TextInput
           type="password"
           id="password"
-          placeholder="password"
+          placeholder="************"
           onChange={handleChange}
         />
-        <Button type="submit" gradientDuoTone="cyanToBlue" outline disabled={loading || imageFileUploading}>
+        <Button
+          type="submit"
+          gradientDuoTone="cyanToBlue"
+          outline
+          disabled={loading}
+        >
           {loading ? "Loading..." : "Update"}
         </Button>
-        {currentUser.isAdmin && (
-          <Link to={"/create-post"}>
-            <Button
-              type="button"
-              gradientDuoTone="cyanToBlue"
-              className="w-full"
-            >
-              Create a Post
-            </Button>
-          </Link>
-        )}
       </form>
       <div className="text-red-700 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
@@ -195,7 +162,7 @@ export default function DashboardProfile() {
             </h3>
             <div className="flex justify-center gap-4">
               <Button color="failure" onClick={handleDeleteUser}>
-                Yes, I&apos;m sure
+                Yes, I am sure
               </Button>
               <Button onClick={() => setShowModal(false)}>No, cancel</Button>
             </div>
