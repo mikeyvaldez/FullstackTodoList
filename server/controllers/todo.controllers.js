@@ -30,7 +30,7 @@ export const getTodos = async (req, res, next) => {
 export const updateTodos = async (req, res, next) => {
   const { _id, content } = req.body;
   Todo.findByIdAndUpdate(_id, { content })
-    .then(() => res.send("Update Successfully"))
+    .then(() => res.status(200))
     .catch((err) => next(err));
 };
 // -----------------------end of update todos---------------------------------------
@@ -39,7 +39,7 @@ export const updateTodos = async (req, res, next) => {
 export const deleteTodo = async (req, res, next) => {
   const { _id } = req.body;
   Todo.findByIdAndDelete(_id)
-    .then(() => res.send("Deleted Successfully..."))
+    .then(() => res.status(200))
     .catch((err) => next(err));
 };
 // ----------------------END OF DELETE TODO---------------------------------------

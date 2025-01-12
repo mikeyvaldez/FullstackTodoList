@@ -23,8 +23,8 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />        
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={ <Dashboard /> } />
-          <Route path="/todos" element={ <TodosPage /> } />
         </Route>
+          <Route path="/todos" element={ <TodosPage /> } />
         <Route path="/projects" element={<Projects />} />
       </Routes>
       <Footer />

@@ -54,7 +54,7 @@ export default function DashboardSidebar() {
             </Sidebar.Item>
           </Link>
 
-          <Link to="/dashboard?tab=todos">
+          <Link to="/todos">
             <Sidebar.Item
               active={tab === "todos"}
               icon={HiDocumentText}
