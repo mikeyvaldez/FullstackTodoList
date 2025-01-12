@@ -38,7 +38,7 @@ export const updateTodo = async (
   setIsUpdating
 ) => {
   try {
-    const res = await fetch("/api/todo/updatetodos", {
+    await fetch("/api/todo/updatetodos", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -57,4 +57,17 @@ export const updateTodo = async (
   }
 };
 
-export const deleteTodo = async () => {};
+export const deleteTodo = async (_id, setTodos) => {
+  await fetch("/api/todo/deletetodo", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ _id }),
+  })
+    .then((data) => {
+      getTodos(setTodos);
+    })
+    .then(location.reload())
+    .catch((err) => console.log(err));
+};
